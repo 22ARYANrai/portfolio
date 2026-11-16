@@ -1,0 +1,793 @@
+{
+ "work": {
+  "hinge": {
+   "slides": [
+    {
+     "src": "assets/work/hinge/slide-01.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/hinge/slide-02.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/hinge/slide-03.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/hinge/slide-04.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/hinge/slide-05.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/hinge/slide-06.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/hinge/slide-07.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/hinge/slide-08.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/hinge/slide-09.webp",
+     "w": 1600,
+     "h": 900
+    }
+   ],
+   "thumb": "assets/work/hinge/thumb.webp",
+   "redactions": 0,
+   "pdf": "assets/files/aryan-rai-hinge-date-planner.pdf",
+   "pdfKB": 945,
+   "pages": 9
+  },
+  "lovable": {
+   "slides": [
+    {
+     "src": "assets/work/lovable/slide-01.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/lovable/slide-02.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/lovable/slide-03.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/lovable/slide-04.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/lovable/slide-05.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/lovable/slide-06.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/lovable/slide-07.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/lovable/slide-08.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/lovable/slide-09.webp",
+     "w": 1600,
+     "h": 900
+    }
+   ],
+   "thumb": "assets/work/lovable/thumb.webp",
+   "redactions": 0,
+   "pdf": "assets/files/aryan-rai-lovable-ship-mode.pdf",
+   "pdfKB": 2782,
+   "pages": 9
+  },
+  "replit": {
+   "slides": [
+    {
+     "src": "assets/work/replit/slide-01.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/replit/slide-02.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/replit/slide-03.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/replit/slide-04.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/replit/slide-05.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/replit/slide-06.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/replit/slide-07.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/replit/slide-08.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/replit/slide-09.webp",
+     "w": 1600,
+     "h": 900
+    }
+   ],
+   "thumb": "assets/work/replit/thumb.webp",
+   "redactions": 0,
+   "pdf": "assets/files/aryan-rai-replit-activation.pdf",
+   "pdfKB": 2384,
+   "pages": 9
+  },
+  "coinswitch": {
+   "slides": [
+    {
+     "src": "assets/work/coinswitch/slide-01.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/coinswitch/slide-02.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/coinswitch/slide-03.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/coinswitch/slide-04.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/coinswitch/slide-05.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/coinswitch/slide-06.webp",
+     "w": 1600,
+     "h": 900
+    }
+   ],
+   "thumb": "assets/work/coinswitch/thumb.webp",
+   "redactions": 1,
+   "pdf": "assets/files/aryan-rai-foodswift-order-drop.pdf",
+   "pdfKB": 678,
+   "pages": 6
+  },
+  "gnani": {
+   "slides": [
+    {
+     "src": "assets/work/gnani/slide-01.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/gnani/slide-02.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/gnani/slide-03.webp",
+     "w": 1600,
+     "h": 900
+    }
+   ],
+   "thumb": "assets/work/gnani/thumb.webp",
+   "redactions": 0,
+   "pdf": "assets/files/aryan-rai-gnani-voice-ai.pdf",
+   "pdfKB": 435,
+   "pages": 3
+  },
+  "revx": {
+   "slides": [
+    {
+     "src": "assets/work/revx/slide-01.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-02.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-03.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-04.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-05.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-06.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-07.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-08.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-09.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-10.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-11.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-12.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-13.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-14.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/revx/slide-15.webp",
+     "w": 1600,
+     "h": 900
+    }
+   ],
+   "thumb": "assets/work/revx/thumb.webp",
+   "redactions": 4,
+   "pdf": "assets/files/aryan-rai-revx-energy-gtm.pdf",
+   "pdfKB": 1587,
+   "pages": 15
+  },
+  "swiggy": {
+   "slides": [
+    {
+     "src": "assets/work/swiggy/slide-01.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/swiggy/slide-02.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/swiggy/slide-03.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/swiggy/slide-04.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/swiggy/slide-05.webp",
+     "w": 1600,
+     "h": 900
+    }
+   ],
+   "thumb": "assets/work/swiggy/thumb.webp",
+   "redactions": 0,
+   "pdf": "assets/files/aryan-rai-swiggy-campus.pdf",
+   "pdfKB": 1233,
+   "pages": 5
+  },
+  "linkedin": {
+   "slides": [
+    {
+     "src": "assets/work/linkedin/slide-01.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/linkedin/slide-02.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/linkedin/slide-03.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/linkedin/slide-04.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/linkedin/slide-05.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/linkedin/slide-06.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/linkedin/slide-07.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/linkedin/slide-08.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/linkedin/slide-09.webp",
+     "w": 1600,
+     "h": 900
+    }
+   ],
+   "thumb": "assets/work/linkedin/thumb.webp",
+   "redactions": 0,
+   "pdf": "assets/files/aryan-rai-linkedin-creator-growth.pdf",
+   "pdfKB": 1126,
+   "pages": 9
+  },
+  "campus-calories": {
+   "slides": [
+    {
+     "src": "assets/work/campus-calories/slide-01.webp",
+     "w": 1600,
+     "h": 2422
+    },
+    {
+     "src": "assets/work/campus-calories/slide-02.webp",
+     "w": 1600,
+     "h": 2422
+    }
+   ],
+   "thumb": "assets/work/campus-calories/thumb.webp",
+   "redactions": 0
+  },
+  "wilp": {
+   "slides": [
+    {
+     "src": "assets/work/wilp/slide-01.webp",
+     "w": 1600,
+     "h": 2071
+    },
+    {
+     "src": "assets/work/wilp/slide-02.webp",
+     "w": 1600,
+     "h": 2071
+    },
+    {
+     "src": "assets/work/wilp/slide-03.webp",
+     "w": 1600,
+     "h": 2071
+    }
+   ],
+   "thumb": "assets/work/wilp/thumb.webp",
+   "redactions": 2,
+   "pdf": "assets/files/aryan-rai-wilp-diffusion-restoration-report.pdf",
+   "pdfKB": 1102,
+   "pages": 48
+  },
+  "chatbot": {
+   "slides": [
+    {
+     "src": "assets/work/chatbot/slide-01.webp",
+     "w": 1600,
+     "h": 2261
+    }
+   ],
+   "thumb": "assets/work/chatbot/thumb.webp",
+   "redactions": 0,
+   "pdf": "assets/files/aryan-rai-n8n-ai-support-bot.pdf",
+   "pdfKB": 59,
+   "pages": 2
+  },
+  "igcar": {
+   "slides": [
+    {
+     "src": "assets/work/igcar/slide-01.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-02.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-03.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-04.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-05.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-06.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-07.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-08.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-09.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-10.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-11.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-12.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-13.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-14.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-15.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-16.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-17.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-18.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-19.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-20.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-21.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-22.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-23.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-24.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-25.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-26.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-27.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-28.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-29.webp",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "assets/work/igcar/slide-30.webp",
+     "w": 1600,
+     "h": 900
+    }
+   ],
+   "thumb": "assets/work/igcar/thumb.webp",
+   "redactions": 1,
+   "pdf": "assets/files/aryan-rai-igcar-water-hammer-slides.pdf",
+   "pdfKB": 2438,
+   "pages": 30
+  },
+  "iot": {
+   "slides": [
+    {
+     "src": "assets/work/iot/slide-01.webp",
+     "w": 1600,
+     "h": 2071
+    }
+   ],
+   "thumb": "assets/work/iot/thumb.webp",
+   "redactions": 2,
+   "pdf": "assets/files/aryan-rai-iot-manufacturing-dashboard-report.pdf",
+   "pdfKB": 229,
+   "pages": 22
+  },
+  "torrent": {
+   "slides": [
+    {
+     "src": "assets/work/torrent/slide-01.webp",
+     "w": 1600,
+     "h": 900
+    }
+   ],
+   "thumb": "assets/work/torrent/thumb.webp",
+   "redactions": 4,
+   "pdf": "assets/files/aryan-rai-torrent-pharma-valuation.pdf",
+   "pdfKB": 1461,
+   "pages": 40
+  },
+  "solar": {
+   "slides": [
+    {
+     "src": "assets/work/solar/slide-01.webp",
+     "w": 1600,
+     "h": 2261
+    }
+   ],
+   "thumb": "assets/work/solar/thumb.webp",
+   "redactions": 4,
+   "pdf": "assets/files/aryan-rai-solar-distillation-report.pdf",
+   "pdfKB": 1158,
+   "pages": 10
+  }
+ },
+ "resumes": {
+  "product": {
+   "pdf": "assets/resume/aryan-rai-resume-product.pdf",
+   "kb": 146,
+   "redactions": 2
+  },
+  "analytics": {
+   "pdf": "assets/resume/aryan-rai-resume-analytics.pdf",
+   "kb": 142,
+   "redactions": 2
+  },
+  "consulting": {
+   "pdf": "assets/resume/aryan-rai-resume-consulting.pdf",
+   "kb": 139,
+   "redactions": 2
+  },
+  "ai": {
+   "pdf": "assets/resume/aryan-rai-resume-ai.pdf",
+   "kb": 142,
+   "redactions": 2
+  },
+  "founders": {
+   "pdf": "assets/resume/aryan-rai-resume-founders.pdf",
+   "kb": 142,
+   "redactions": 2
+  }
+ },
+ "certs": {
+  "nextleap-pm-fellowship": {
+   "pdf": "assets/certs/nextleap-pm-fellowship.pdf",
+   "kb": 65
+  },
+  "coursera-intro-ml": {
+   "pdf": "assets/certs/coursera-intro-ml.pdf",
+   "kb": 282
+  },
+  "coursera-genai-basics": {
+   "pdf": "assets/certs/coursera-genai-basics.pdf",
+   "kb": 364
+  },
+  "coursera-ai-data-analysis": {
+   "pdf": "assets/certs/coursera-ai-data-analysis.pdf",
+   "kb": 326
+  },
+  "coursera-ai-marketing-swot": {
+   "pdf": "assets/certs/coursera-ai-marketing-swot.pdf",
+   "kb": 271
+  },
+  "coursera-sql": {
+   "pdf": "assets/certs/coursera-sql.pdf",
+   "kb": 306
+  },
+  "coursera-business-analysis": {
+   "pdf": "assets/certs/coursera-business-analysis.pdf",
+   "kb": 384
+  },
+  "coursera-excel": {
+   "pdf": "assets/certs/coursera-excel.pdf",
+   "kb": 390
+  },
+  "forage-bcg": {
+   "pdf": "assets/certs/forage-bcg.pdf",
+   "kb": 98
+  },
+  "forage-mastercard": {
+   "pdf": "assets/certs/forage-mastercard.pdf",
+   "kb": 181
+  },
+  "forage-deloitte": {
+   "pdf": "assets/certs/forage-deloitte.pdf",
+   "kb": 119
+  },
+  "forage-tata-dataviz": {
+   "pdf": "assets/certs/forage-tata-dataviz.pdf",
+   "kb": 111
+  },
+  "forage-tata-genai": {
+   "pdf": "assets/certs/forage-tata-genai.pdf",
+   "kb": 111
+  },
+  "forage-cba-datascience": {
+   "pdf": "assets/certs/forage-cba-datascience.pdf",
+   "kb": 151
+  },
+  "forage-ge-aerospace": {
+   "pdf": "assets/certs/forage-ge-aerospace.pdf",
+   "kb": 437
+  },
+  "forage-british-airways": {
+   "pdf": "assets/certs/forage-british-airways.pdf",
+   "kb": 227
+  },
+  "datacamp-data-topics": {
+   "pdf": "assets/certs/datacamp-data-topics.pdf",
+   "kb": 137
+  },
+  "skillsetmaster-data-analytics": {
+   "pdf": "assets/certs/skillsetmaster-data-analytics.pdf",
+   "kb": 217
+  },
+  "analyst-club-business-analyst": {
+   "pdf": "assets/certs/analyst-club-business-analyst.pdf",
+   "kb": 379
+  },
+  "skilled-sapiens-mclp": {
+   "pdf": "assets/certs/skilled-sapiens-mclp.pdf",
+   "kb": 236
+  },
+  "skilled-sapiens-flp": {
+   "pdf": "assets/certs/skilled-sapiens-flp.pdf",
+   "kb": 223
+  },
+  "codewithharry-data-science": {
+   "pdf": "assets/certs/codewithharry-data-science.pdf",
+   "kb": 177
+  },
+  "codewithharry-python": {
+   "pdf": "assets/certs/codewithharry-python.pdf",
+   "kb": 191
+  },
+  "upgrad-genai": {
+   "pdf": "assets/certs/upgrad-genai.pdf",
+   "kb": 57
+  },
+  "skillup-figma": {
+   "pdf": "assets/certs/skillup-figma.pdf",
+   "kb": 978
+  },
+  "lnt-cps-iiot-cloud": {
+   "pdf": "assets/certs/lnt-cps-iiot-cloud.pdf",
+   "kb": 535
+  },
+  "mathworks-matlab": {
+   "pdf": "assets/certs/mathworks-matlab.pdf",
+   "kb": 345
+  }
+ }
+}
