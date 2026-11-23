@@ -5,7 +5,7 @@ Nothing below is shown on the site as "TODO". Where a fact was missing, the site
 ## Before you share the link
 - [ ] **GitHub URL.** Add it to `profile.github` in `src/data/content.ts`. The GitHub links stay hidden until you do.
 - [ ] **Site URL.** After the first deploy, set `VITE_SITE_URL` (in `.env` or Vercel's environment variables) so link previews show the right image.
-- [ ] **Portfolio link in your resumes.** Update it in the 5 originals in `Downloads/resume after joining kuku`, then run `npm run assets` to regenerate the phone-free copies the site serves.
+- [ ] **Your resume.** After the site is live, add the site link to your resume, export it as PDF and save it as `public/resume/Aryan-Rai-Resume.pdf` (exact name), then commit and push. Every Resume button (nav, phone menu, hero, contact) appears automatically once that file exists; until then they stay hidden. Remove your phone number first if you don't want it public.
 - [ ] **Kuku disclosure.** Confirm that showing "52K+ learners in 2 months", the stack and the billing and analytics vendors publicly is fine with Kuku.
 
 ## Content gaps (add to `src/data/content.ts`)
@@ -41,3 +41,7 @@ Where a resume and a deck disagreed, the site uses the deck. Before reusing thes
   - Offer letters
   - Wellness, LinkedIn-profile, G Suite and Carrd certificates
   - The volleyball certificate
+
+## Added 2026-11-22
+- [ ] **Bloomberg Spreadsheet Analysis and ESG.** No file or verify link found anywhere on this laptop. Download them from portal.bloombergforeducation.com (Certificates), then add `verify:` links in `src/data/content.ts`. Market Concepts is done.
+- [ ] **Live Play Store numbers on Vercel.** GitHub Pages rebuilds daily on its own. For Vercel: create a Deploy Hook (Project → Settings → Git → Deploy Hooks) and save it as the GitHub secret `VERCEL_DEPLOY_HOOK`; `.github/workflows/vercel-refresh.yml` then redeploys daily.

@@ -26,6 +26,7 @@ export interface Project {
   /** Optional closing note, e.g. the recommendation or decision */
   note?: string
   /** Key into assets.json -> work */
+  links?: { label: string; href: string }[]
   evidenceKey?: string
   evidenceNote?: string
   /** Where each fact came from (shown in the case study footer) */
@@ -45,7 +46,7 @@ export interface Cert {
   title: string
   issuer: string
   date: string
-  group: 'Product' | 'AI' | 'Data & Analytics' | 'Consulting & Finance' | 'Engineering'
+  group: 'Product' | 'AI' | 'Data & Analytics' | 'Consulting & Finance' | 'Engineering' | 'Other'
   verify?: string
   fileKey?: string
 }

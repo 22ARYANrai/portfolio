@@ -160,27 +160,8 @@ def find_page(src, needle):
     return 0
 
 
-def resumes():
-    out = {}
-    for track, fname in {
-        "product": "resume_product_management.pdf",
-        "analytics": "resume_data_business_analyst.pdf",
-        "consulting": "resume_strategy_growth.pdf",
-        "ai": "resume_fde_ai_ops.pdf",
-        "founders": "resume_founders_office.pdf",
-    }.items():
-        doc, n = open_redacted(RK / fname)
-        # Remove the now-dangling " | " separator left where the phone number was.
-        dest = OUT / "resume" / f"aryan-rai-resume-{track}.pdf"
-        kb = save_pdf(doc, dest)
-        doc.close()
-        out[track] = {"pdf": f"assets/resume/{dest.name}", "kb": kb, "redactions": n}
-        print(f"  resume {track:10} redactions={n} {kb}KB")
-    return out
-
-
 def photo():
-    src = RK / "file_000000006f8482088a77c98d94585701.png"
+    src = DL / "Professional Portrait with Warm Bokeh.png"
     img = Image.open(src).convert("RGB")
     for w, name in [(960, "aryan-rai.webp"), (480, "aryan-rai-480.webp")]:
         t = img.copy()
@@ -212,7 +193,7 @@ def og_image(img):
     lines = ["AI product builder: product, data", "and forward-deployed engineering."]
     for i, l in enumerate(lines):
         d.text((64, 260 + i * 44), l, font=sans, fill=ink)
-    d.text((64, 520), "Kuku AI Coach  ·  52K+ learners in 2 months", font=small, fill=accent)
+    d.text((64, 520), "Kuku AI Coach  ·  50K+ downloads on Google Play", font=small, fill=accent)
     c.save(OUT / "img" / "og.jpg", "JPEG", quality=86)
 
 
@@ -245,6 +226,13 @@ def certs():
         "skillup-figma": CE / "Aryan Rai - FIGMA.pdf",
         "lnt-cps-iiot-cloud": CE / "l&t certificate.pdf",
         "mathworks-matlab": CE / "matlabcertificate.pdf",
+        "bloomberg-bmc": DL / "GALAXY M31" / "Download" / "certificate_of_completion (1).pdf",
+        "coursera-yale-wellbeing": CE / "The Science of Well-Being for Teens-Coursera 6M3TVFBY68H2.pdf",
+        "coursera-wesleyan-suicide-prevention": CE / "Suicide Prevention coursera.pdf",
+        "coursera-gsuite": CE / "Collaborating with G Suite Apps.pdf",
+        "coursera-carrd": CE / "NO CODE WEB.pdf",
+        "coursera-linkedin-profile": CE / "linkedin.pdf",
+        "udemy-digital-wellness": CE / "UC-digital wellness.pdf",
     }
     out = {}
     for slug, src in m.items():
@@ -253,6 +241,31 @@ def certs():
         doc.close()
         out[slug] = {"pdf": f"assets/certs/{slug}.pdf", "kb": kb}
     print(f"  {len(out)} certificates")
+    return out
+
+
+APPS = ROOT / "scripts" / "app-screens"  # Play Store screenshots (public listing images)
+
+
+def app_screens():
+    """Resize Play Store screenshots into the public folder and register them."""
+    out = {}
+    for slug, prefix in (("kuku-ai-coach", "coach"), ("dicta", "dicta")):
+        d = OUT / "work" / slug
+        if d.exists():
+            shutil.rmtree(d)
+        slides = []
+        for i, src in enumerate(sorted(APPS.glob(f"{prefix}-shot*.webp"))):
+            img = Image.open(src).convert("RGB")
+            img.thumbnail((620, 1100))
+            name = f"screen-{i + 1:02d}.webp"
+            save_webp(img, d / name, q=80)
+            slides.append({"src": f"assets/work/{slug}/{name}", "w": img.width, "h": img.height})
+        icon = Image.open(APPS / f"{prefix}-icon.webp").convert("RGB")
+        icon.thumbnail((192, 192))
+        save_webp(icon, d / "icon.webp", q=85)
+        out[slug] = {"slides": slides, "thumb": slides[0]["src"], "icon": f"assets/work/{slug}/icon.webp"}
+        print(f"  {slug:18} {len(slides)} screenshots")
     return out
 
 
@@ -279,9 +292,9 @@ def main():
     w["igcar"] = deck("igcar", RP / "2022A4PS1175H_-compreppt IGCAR.pdf", pages=list(range(0, 30)), pdf_name="aryan-rai-igcar-water-hammer-slides.pdf")
     w["iot"] = deck("iot", RP / "IoT concept development in manufacturing.pdf", pages=[0], pdf_name="aryan-rai-iot-manufacturing-dashboard-report.pdf")
     w["torrent"] = deck("torrent", RP / "Financial Valuation Modeling-Torrent_PHARMA.pdf", pages=[0], pdf_name="aryan-rai-torrent-pharma-valuation.pdf")
-    w["solar"] = deck("solar", RP / "Performance Evaluation of solar distillation systems-midsem.pdf", pages=[0], pdf_name="aryan-rai-solar-distillation-report.pdf")
-    print("resumes")
-    manifest["resumes"] = resumes()
+    solar = DL / "Final Progress Report 2.pdf"
+    w["solar"] = deck("solar", solar, pages=[0, find_page(solar, "Stepped with dimples"), find_page(solar, "In conclusion")], pdf_name="solar-distillation-dsir-progress-report.pdf")
+    w.update(app_screens())
     print("certificates")
     manifest["certs"] = certs()
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)

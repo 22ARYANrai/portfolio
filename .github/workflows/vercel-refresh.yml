@@ -1,0 +1,16 @@
+# Daily redeploy on Vercel so the Play Store numbers stay fresh.
+# Setup: Vercel → Project → Settings → Git → Deploy Hooks → create one, then add it to
+# GitHub → repo Settings → Secrets → Actions as VERCEL_DEPLOY_HOOK. Without the secret this does nothing.
+name: Refresh Vercel deploy
+on:
+  schedule:
+    - cron: '30 3 * * *'
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger deploy hook
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: '[ -z "$HOOK" ] && echo "No VERCEL_DEPLOY_HOOK secret; skipping." || curl -fsS -X POST "$HOOK"'

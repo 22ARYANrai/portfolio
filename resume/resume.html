@@ -1,0 +1,93 @@
+<!doctype html>
+<!-- Source for public/resume/Aryan-Rai-Resume.pdf. Rebuild: see README in this folder. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Aryan Rai - Resume</title>
+<style>
+  @page { size: letter; margin: 0.42in 0.5in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Cambria, Georgia, "Times New Roman", serif; font-size: 10pt; line-height: 1.2; color: #000; }
+  a { color: inherit; }
+  header { text-align: center; }
+  h1 { font-size: 25pt; font-variant: small-caps; font-weight: 700; letter-spacing: .5px; line-height: 1.05; }
+  .contact { font-size: 9.5pt; margin-top: 2px; }
+  h2 { font-size: 12.5pt; font-weight: 400; font-variant: small-caps; border-bottom: .8px solid #000; margin: 7px 0 4px; padding-bottom: 1px; }
+  .entry { margin: 0 0 4px 10px; }
+  .row { display: flex; justify-content: space-between; gap: 12px; }
+  .row b { font-size: 10.5pt; }
+  .sub { font-style: italic; font-size: 9.5pt; }
+  ul { margin: 2px 0 0 26px; }
+  li { margin-bottom: 1.5px; font-size: 9.6pt; }
+  .tags { font-style: italic; font-weight: 400; font-size: 9.5pt; }
+  p.line { margin-left: 10px; font-size: 9.6pt; margin-bottom: 1px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Aryan Rai</h1>
+  <p class="contact">+91-7223088291 | <a href="mailto:aryanrai.workspace@gmail.com">aryanrai.workspace@gmail.com</a> | <a href="https://linkedin.com/in/aryanrai-ai">linkedin.com/in/aryanrai-ai</a> | <a href="https://22aryanrai.github.io/portfolio/">22aryanrai.github.io/portfolio</a></p>
+</header>
+
+<h2>Education</h2>
+<div class="entry">
+  <div class="row"><b>Birla Institute of Technology and Science (BITS) Pilani</b><span>Oct. 2022 – July 2026</span></div>
+  <div class="sub">Bachelor of Engineering in Mechanical Engineering, Minor in Finance</div>
+</div>
+
+<h2>Experience</h2>
+<div class="entry">
+  <div class="row"><b>Graduate Management Trainee – FDE &amp; AI Operations</b><span>Aug. 2026 – Present</span></div>
+  <div class="row sub"><span>Kuku (formerly Kuku FM)</span><span>Bengaluru, Karnataka</span></div>
+  <ul>
+    <li>Built and deployed <b>Kuku AI Coach</b>, an AI spoken-English tutor for Hindi speakers, owning the <b>full stack</b> (React, TypeScript, Django, PostgreSQL) and scaling to <b>52K+ learners in two months</b> with a <b>4.3/5 Google Play rating</b>; shipped <b>250+ commits</b> in my first 3 months.</li>
+    <li>Built the conversational lesson engine on the <b>Anthropic Claude API</b>, AI voice-practice calls with <b>ElevenLabs and Azure Speech</b>, and <b>subscription and coin billing</b> on Razorpay (UPI autopay) and Google Play; instrumented <b>Firebase, GA4, AppsFlyer and Meta Pixel</b> and ran reminder pushes with <b>control groups</b> to measure lift.</li>
+    <li>Extended the same backend to <b>Dicta</b>, a Hindi/Hinglish voice-to-English Android app (<b>1K+ downloads, 4.5/5 rating</b>), shipping its Premium paywall and tone-quality fixes; improve both products through <b>LLM evaluation, safety guardrails, latency optimization and prompt-caching cost reduction</b>.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><b>Applied AI &amp; Project Management Intern</b><span>July 2025 – Dec. 2025</span></div>
+  <div class="row sub"><span>BITS Pilani Work Integrated Learning Programmes (WILP)</span><span>Hyderabad, Telangana</span></div>
+  <ul>
+    <li>Implemented a <b>physics-informed AI pipeline</b> for Optical Camera Communication using U-Net, CNNs, and Transformers, achieving a <b>35% improvement in signal quality</b> under defocus scenarios.</li>
+    <li>Benchmarked <b>3+ AI models</b> using FID/PSNR; applied DDIM sampling for <b>100× faster inference</b>, reducing computational costs by <b>75%</b>.</li>
+  </ul>
+</div>
+
+<h2>Projects</h2>
+<div class="entry">
+  <div class="row"><b>Kuku AI Coach &amp; Dicta – AI Product Build <span class="tags">| Claude API, Django, React, Android |</span> <a href="https://play.google.com/store/apps/details?id=com.vlv.aravali.kukuaicoach">Coach</a> | <a href="https://play.google.com/store/apps/details?id=com.vlv.aravali.kukuflow">Dicta</a></b><span>Aug. 2026 – Present</span></div>
+  <ul>
+    <li>Designed the lesson engine so code sets the goal of each turn and Claude writes the words; added a <b>server-scored placement test</b> (3 levels), a <b>free first lesson</b> and background <b>grammar and pronunciation reports</b> after each voice call.</li>
+    <li>Built the speak-to-English feature that became Dicta: speech-to-text, then an AI rewrite in <b>5 tones</b> (casual to formal, Hinglish, Hindi), with <b>safety checks on every request</b> and no audio kept after processing.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><b>Hinge – Product Discovery <span class="tags">| User Research, Product Analytics |</span> <a href="https://22aryanrai.github.io/portfolio/assets/files/aryan-rai-hinge-date-planner.pdf">Deck</a></b><span>Sep. 2025 – Oct. 2025</span></div>
+  <ul>
+    <li>Ran <b>6 interviews, 2 chat replays and a 32-person survey</b>, finding <b>~65% of high-intent chats stall after 2 messages</b> and <b>84%</b> of users would use an in-app date-suggestion tool.</li>
+    <li>Designed a native <b>Date Planner</b> with <b>4+ success metrics</b>, safety guardrails and a <b>10%-to-50% phased rollout</b>, targeting a <b>~20% rise</b> in chat-to-date conversion.</li>
+  </ul>
+</div>
+
+<h2>Certifications</h2>
+<p class="line"><b>Generative AI:</b> GenAI Basics – How LLMs Work (Duke University); GenAI-Powered Data Analytics Job Simulation (Tata, Forage)</p>
+<p class="line"><b>AI &amp; Analytics:</b> AI-Powered Data Analysis: A Practical Introduction (University of Michigan); Introduction to Machine Learning (Duke University)</p>
+
+<h2>Leadership &amp; Recognition</h2>
+<div class="entry">
+  <div class="row"><b>Prof. G.N. Ramachandran Undergraduate Fellowship – BITS BioCyTiH Foundation</b><span>May 2025</span></div>
+  <ul><li>Awarded a four-month undergraduate research fellowship for R&amp;D under Prof. Sandip Deshmukh, Associate Dean (SWD).</li></ul>
+</div>
+<div class="entry">
+  <div class="row"><b>Coordinator – Utkal Samaj, BITS Pilani, Hyderabad</b><span>May 2024 – May 2025</span></div>
+  <ul><li>Coordinated <b>5+ events for 3,000+ attendees</b>, leading a <b>40+ member</b> team and managing budgets, vendor relations, and logistics.</li></ul>
+</div>
+
+<h2>Technical Skills</h2>
+<p class="line"><b>AI / LLM:</b> Claude API, Prompt Engineering, LLM Evaluation, Safety Guardrails, Prompt Caching, Latency Optimization, Agentic AI, Embeddings &amp; Vector Search, ElevenLabs, Azure Speech</p>
+<p class="line"><b>Engineering:</b> Python, SQL, React, TypeScript, Django, PostgreSQL, REST APIs, Supabase, n8n, Git</p>
+<p class="line"><b>Product &amp; Integrations:</b> Razorpay, Google Play Billing, Firebase, GA4, AppsFlyer, Meta Pixel, A/B Testing, Push Notifications</p>
+<p class="line"><b>Operations &amp; Analytics:</b> Root-Cause Analysis, KPI Dashboards, Technical Documentation, Agile, Advanced Excel, Power BI</p>
+</body>
+</html>

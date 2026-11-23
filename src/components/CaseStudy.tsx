@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { projects } from '../data/content'
 import type { Project } from '../data/types'
 import { asset, fmtSize, openCase, workAssets } from '../lib/hooks'
-import { DictaFlow, KukuSystemMap } from './Work'
+import { KukuSystemMap } from './Diagrams'
 import { Icon, KindBadge, Tag } from './ui'
 
 function SlideViewer({ p }: { p: Project }) {
@@ -91,9 +91,79 @@ function SlideViewer({ p }: { p: Project }) {
   )
 }
 
+const APP_SLUGS = ['kuku-ai-coach', 'dicta']
+
+/** Phone screenshots read best side by side, uncropped. */
+function ScreenStrip({ p }: { p: Project }) {
+  const a = workAssets[p.evidenceKey!]
+  return (
+    <ul tabIndex={0} className="no-scrollbar -mx-1 flex snap-x gap-3 overflow-x-auto px-1 pb-2" aria-label={`${p.title} screenshots`}>
+      {a.slides.map((s, i) => (
+        <li key={s.src} className="w-44 shrink-0 snap-start sm:w-52">
+          <img src={asset(s.src)} alt={`${p.title}, Google Play screenshot ${i + 1} of ${a.slides.length}`} loading="lazy" className="w-full rounded-2xl border border-line" style={{ aspectRatio: `${s.w} / ${s.h}` }} />
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+/* Jump list of every project, current one highlighted. */
+const GROUPS: { label: string; tier: Project['tier'] }[] = [
+  { label: 'Flagship', tier: 'flagship' },
+  { label: 'Featured', tier: 'case' },
+  { label: 'More projects', tier: 'more' },
+]
+function ProjectList({ current }: { current: string }) {
+  const cur = useRef<HTMLAnchorElement>(null)
+  useEffect(() => {
+    // centre the open project inside the list only (scrollIntoView would also move the case study)
+    const a = cur.current, nav = a?.closest('nav')
+    if (a && nav) nav.scrollTop = a.offsetTop - nav.clientHeight / 2
+  }, [])
+  let n = 0
+  return (
+    <nav id="case-list" aria-label="All projects" className="case-list absolute top-[calc(100%+8px)] right-4 left-4 max-h-[min(70vh,34rem)] overflow-y-auto border-[3px] border-ink bg-card p-3 sm:left-auto sm:w-[26rem]">
+      {GROUPS.map((g) => (
+        <div key={g.tier} className="mb-2 last:mb-0">
+          <p className="num px-2 pt-2 pb-1 text-[0.66rem] tracking-[0.14em] text-muted uppercase">
+            {g.label} · {projects.filter((x) => x.tier === g.tier).length}
+          </p>
+          <ul>
+            {projects
+              .filter((x) => x.tier === g.tier)
+              .map((x) => {
+                n += 1
+                const on = x.slug === current
+                return (
+                  <li key={x.slug}>
+                    <a
+                      ref={on ? cur : undefined}
+                      href={`#/work/${x.slug}`}
+                      aria-current={on ? 'page' : undefined}
+                      onClick={(e) => (e.preventDefault(), openCase(x.slug))}
+                      className={`grid grid-cols-[2rem_1fr] items-baseline gap-1 px-2 py-2.5 ${on ? 'border-2 border-ink bg-[var(--pop)] text-black' : 'border-2 border-transparent hover:border-ink hover:bg-paper-2'}`}
+                    >
+                      <span className="num text-xs">{String(n).padStart(2, '0')}</span>
+                      <span>
+                        <span className="block leading-snug font-bold">{x.title}</span>
+                        <span className={`num block text-[0.66rem] tracking-wide ${on ? 'text-black/70' : 'text-muted'}`}>{x.context}</span>
+                      </span>
+                    </a>
+                  </li>
+                )
+              })}
+          </ul>
+        </div>
+      ))}
+    </nav>
+  )
+}
+
 export function CaseStudy({ slug, onClose }: { slug: string | null; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null)
   const p = projects.find((x) => x.slug === slug)
+  const [list, setList] = useState(false)
+  useEffect(() => setList(false), [slug]) // picking a project closes the list
 
   useEffect(() => {
     const d = ref.current
@@ -124,7 +194,8 @@ export function CaseStudy({ slug, onClose }: { slug: string | null; onClose: () 
       aria-labelledby="case-title"
       onCancel={(e) => {
         e.preventDefault()
-        onClose()
+        if (list) setList(false) // Esc closes the project list first, then the case study
+        else onClose()
       }}
       onClose={() => {
         document.body.style.overflow = ''
@@ -133,11 +204,24 @@ export function CaseStudy({ slug, onClose }: { slug: string | null; onClose: () 
       {p && (
         <div className="min-h-full">
           <div className="sticky top-0 z-10 border-b border-line bg-paper/90 backdrop-blur-md">
-            <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
+            <div className="relative mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
               <p className="eyebrow truncate pr-4">{p.tier === 'flagship' ? 'Flagship' : 'Case study'} · {p.context.replace(/^Product case study · /, '')}</p>
-              <button type="button" data-autofocus onClick={onClose} className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-line px-4 text-sm hover:bg-ink hover:text-paper">
-                <Icon name="close" /> Close <span className="sr-only">case study</span>
-              </button>
+              <div className="flex shrink-0 items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setList((l) => !l)}
+                  aria-expanded={list}
+                  aria-controls="case-list"
+                  aria-label="All projects"
+                  className={`case-menu grid size-11 place-items-center border-2 border-ink ${list ? 'bg-[var(--pop)] text-black' : 'bg-card'}`}
+                >
+                  <Icon name={list ? 'close' : 'menu'} className="size-5" />
+                </button>
+                <button type="button" data-autofocus onClick={onClose} className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-line px-4 text-sm hover:bg-ink hover:text-paper">
+                  <Icon name="close" /> Close <span className="sr-only">case study</span>
+                </button>
+              </div>
+              {list && <ProjectList current={p.slug} />}
             </div>
           </div>
 
@@ -147,6 +231,16 @@ export function CaseStudy({ slug, onClose }: { slug: string | null; onClose: () 
                 {p.title}
               </h1>
               <p className="mt-5 max-w-3xl text-lg text-muted sm:text-xl">{p.oneLiner}</p>
+              {p.links && (
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {p.links.map((l) => (
+                    <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 text-sm font-bold text-paper hover:opacity-90">
+                      <Icon name="external" /> {l.label}
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  ))}
+                </div>
+              )}
               <dl className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
                 <div className="bg-card p-4">
                   <dt className="eyebrow !text-[0.65rem]">My role</dt>
@@ -231,9 +325,8 @@ export function CaseStudy({ slug, onClose }: { slug: string | null; onClose: () 
               </h2>
               <div className="md:col-span-9">
                 {p.slug === 'kuku-ai-coach' && <KukuSystemMap />}
-                {p.slug === 'dicta' && <div className="max-w-sm [&>figure]:mt-0"><DictaFlow /></div>}
-                {p.evidenceKey && <SlideViewer key={p.slug} p={p} />}
-                {p.evidenceNote && <p className={`text-sm text-muted ${p.evidenceKey || p.slug === 'kuku-ai-coach' || p.slug === 'dicta' ? 'mt-3' : ''}`}>{p.evidenceNote}</p>}
+                {p.evidenceKey && (APP_SLUGS.includes(p.slug) ? <ScreenStrip p={p} /> : <SlideViewer key={p.slug} p={p} />)}
+                {p.evidenceNote && <p className={`text-sm text-muted ${p.evidenceKey ? 'mt-3' : ''}`}>{p.evidenceNote}</p>}
                 <p className="mt-4 text-xs text-muted">Source: {p.source}</p>
               </div>
             </section>

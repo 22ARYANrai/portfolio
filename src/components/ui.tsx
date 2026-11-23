@@ -1,9 +1,29 @@
 import type { ReactNode } from 'react'
 import type { OutcomeKind, Track } from '../data/types'
 
-type IconName = 'arrow' | 'arrowUp' | 'download' | 'linkedin' | 'mail' | 'github' | 'sun' | 'moon' | 'close' | 'left' | 'right' | 'check' | 'external' | 'menu'
+export type IconName =
+  | 'arrow' | 'arrowUp' | 'download' | 'linkedin' | 'mail' | 'github' | 'sun' | 'moon' | 'close' | 'left' | 'right' | 'check' | 'external' | 'menu'
+  | 'brain' | 'mic' | 'card' | 'chart' | 'shield' | 'spark' | 'wave' | 'file'
 
 const paths: Record<IconName, ReactNode> = {
+  brain: <path d="M9.5 4A2.5 2.5 0 0 0 7 6.5v.2A2.8 2.8 0 0 0 5 9.5a2.8 2.8 0 0 0 .8 2A2.8 2.8 0 0 0 6.5 17 2.5 2.5 0 0 0 12 18V5.5A1.5 1.5 0 0 0 9.5 4Zm5 0A2.5 2.5 0 0 1 17 6.5v.2a2.8 2.8 0 0 1 2 2.8 2.8 2.8 0 0 1-.8 2 2.8 2.8 0 0 1-.7 5.5A2.5 2.5 0 0 1 12 18" />,
+  mic: (
+    <>
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
+    </>
+  ),
+  card: (
+    <>
+      <rect x="3" y="6" width="18" height="13" rx="2" />
+      <path d="M3 10h18M7 15h3" />
+    </>
+  ),
+  chart: <path d="M4 19V5M4 19h16M8 15l3-4 3 2 5-6" />,
+  shield: <path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6l-7-3Z" />,
+  spark: <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6" />,
+  wave: <path d="M3 12h2M7 8v8M11 5v14M15 8v8M19 11v2" />,
+  file: <path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5Zm0 0v5h5M9 13h6M9 17h4" />,
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
   arrowUp: <path d="M7 17 17 7M8 7h9v9" />,
   download: <path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14" />,
@@ -53,7 +73,7 @@ export const trackLabel: Record<Track, string> = {
 export function Tag({ children, active }: { children: ReactNode; active?: boolean }) {
   return (
     <span
-      className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[0.72rem] leading-5 ${
+      className={`tag inline-flex items-center rounded-full border px-2.5 py-0.5 text-[0.72rem] leading-5 ${
         active ? 'border-accent bg-accent-soft text-ink' : 'border-line text-muted'
       }`}
     >

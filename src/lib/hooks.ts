@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react'
-import type { Lens } from '../data/types'
 import manifest from '../data/assets.json'
 
 /* ---------- Assets ---------- */
@@ -7,10 +6,25 @@ import manifest from '../data/assets.json'
 export const asset = (p: string) => `${import.meta.env.BASE_URL}${p.replace(/^\//, '')}`
 
 type Slide = { src: string; w: number; h: number }
-type WorkAsset = { slides: Slide[]; thumb: string; pdf?: string; pdfKB?: number; pages?: number }
+type WorkAsset = { slides: Slide[]; thumb: string; icon?: string; pdf?: string; pdfKB?: number; pages?: number }
 export const workAssets = manifest.work as Record<string, WorkAsset>
-export const resumeAssets = manifest.resumes as Record<string, { pdf: string; kb: number }>
 export const certAssets = manifest.certs as Record<string, { pdf: string; kb: number }>
+
+/** The one resume the site links to. Drop the PDF at public/resume/Aryan-Rai-Resume.pdf.
+ *  Until that file exists every Resume button stays hidden (checked once per page load). */
+export const RESUME_URL = asset('resume/Aryan-Rai-Resume.pdf')
+let resumeCheck: Promise<boolean> | undefined
+export function useResume() {
+  const [ok, setOk] = useState(false)
+  useEffect(() => {
+    // dev/preview servers answer missing files with index.html, so require a PDF content type
+    resumeCheck ??= fetch(RESUME_URL, { method: 'HEAD' })
+      .then((r) => r.ok && (r.headers.get('content-type') ?? '').includes('pdf'))
+      .catch(() => false)
+    resumeCheck.then(setOk)
+  }, [])
+  return ok
+}
 
 export const fmtSize = (kb?: number) => (!kb ? '' : kb > 1000 ? `${(kb / 1024).toFixed(1)} MB` : `${kb} KB`)
 
@@ -36,14 +50,13 @@ const store = {
 /* ---------- Theme ---------- */
 
 export function useTheme() {
-  const systemDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const s = store.get('theme')
-    return s === 'light' || s === 'dark' ? s : systemDark() ? 'dark' : 'light'
+    return s === 'dark' ? 'dark' : 'light'
   })
   useEffect(() => {
     document.documentElement.dataset.theme = theme
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#111114' : '#F6F3EC')
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#0c0c0c' : '#f4f4f0')
   }, [theme])
   const toggle = useCallback(() => {
     setTheme((t) => {
@@ -53,29 +66,6 @@ export function useTheme() {
     })
   }, [])
   return { theme, toggle }
-}
-
-/* ---------- Lens (synced to ?lens=) ---------- */
-
-const LENSES: Lens[] = ['all', 'product', 'analytics', 'consulting', 'ai']
-
-export function useLens() {
-  const read = (): Lens => {
-    const q = new URLSearchParams(window.location.search).get('lens') as Lens | null
-    if (q && LENSES.includes(q)) return q
-    const s = store.get('lens') as Lens | null
-    return s && LENSES.includes(s) ? s : 'all'
-  }
-  const [lens, setLensState] = useState<Lens>(read)
-  const setLens = useCallback((l: Lens) => {
-    setLensState(l)
-    store.set('lens', l)
-    const url = new URL(window.location.href)
-    if (l === 'all') url.searchParams.delete('lens')
-    else url.searchParams.set('lens', l)
-    window.history.replaceState(null, '', url)
-  }, [])
-  return { lens, setLens }
 }
 
 /* ---------- Hash route for case studies: #/work/<slug> ---------- */
@@ -95,7 +85,7 @@ export function useCaseRoute() {
     if (window.history.state?.fromSite) window.history.back()
     else {
       const url = new URL(window.location.href)
-      url.hash = 'work'
+      url.hash = 'projects'
       window.history.replaceState(null, '', url)
       setSlug(null)
     }

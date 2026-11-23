@@ -4,6 +4,7 @@
  * Open questions are listed in TODO.md at the repo root — not on the page.
  */
 import type { Cert, Lens, Project, Role, SkillGroup, Track } from './types'
+import play from './play-stats.json'
 
 export const profile = {
   name: 'Aryan Rai',
@@ -12,8 +13,7 @@ export const profile = {
   location: 'Bengaluru, India',
   email: 'aryanrai.workspace@gmail.com',
   linkedin: 'https://www.linkedin.com/in/aryanrai-ai/',
-  // TODO(Aryan): add your GitHub URL. The link is hidden while this is empty.
-  github: '',
+  github: 'https://github.com/22ARYANrai',
 }
 
 export const lenses: { id: Lens; label: string; blurb: string }[] = [
@@ -24,34 +24,24 @@ export const lenses: { id: Lens; label: string; blurb: string }[] = [
   { id: 'ai', label: 'AI & FDE', blurb: 'LLM products, voice AI, evals and applied ML.' },
 ]
 
-/** Which resume each lens serves (all are phone-redacted copies). */
-export const resumeForLens: Record<Lens, { key: string; label: string }> = {
-  all: { key: 'ai', label: 'AI & FDE resume' },
-  ai: { key: 'ai', label: 'AI & FDE resume' },
-  product: { key: 'product', label: 'Product resume' },
-  analytics: { key: 'analytics', label: 'Data & Business Analyst resume' },
-  consulting: { key: 'consulting', label: 'Strategy & Growth resume' },
-}
-export const allResumes = [
-  { key: 'product', label: 'Product Management' },
-  { key: 'analytics', label: 'Data & Business Analyst' },
-  { key: 'consulting', label: 'Strategy & Growth' },
-  { key: 'founders', label: "Founder's Office" },
-  { key: 'ai', label: 'FDE & AI Operations' },
-]
-
 export const impact = [
-  { value: '52K+', label: 'learners in 2 months', context: 'Kuku AI Coach' },
+  { value: play.coach.downloads, label: 'downloads on Google Play', context: 'Kuku AI Coach' },
   { value: '4×', label: 'faster diffusion sampling with DDIM', context: 'Applied AI research, BITS WILP' },
   { value: '150+', label: 'B2B leads, 12–15% to conversation', context: 'Metvy' },
   { value: '3,000+', label: 'attendees, 40+ person team', context: 'Utkal Samaj, BITS Hyderabad' },
 ]
 
-export const about = `I build AI products that real people use. At Kuku, I work on Kuku AI Coach, an AI spoken-English tutor for Hindi speakers that reached 52K+ learners in its first two months. My week moves between prompt design and LLM evals, voice-call latency, billing flows and the retention funnel. I studied Mechanical Engineering with a minor in Finance at BITS Pilani, did applied-AI research on image restoration, and trained as a PM through NextLeap's fellowship. That mix shapes how I work: break the problem down, check it against data, ship, then measure. I'm open to roles in AI product, analytics, strategy and forward-deployed engineering.`
+export const about = `I build AI products that real people use. At Kuku, I work on Kuku AI Coach, an AI spoken-English tutor for Hindi speakers with ${play.coach.downloads} downloads on Google Play. My week moves between prompt design and LLM evals, voice-call latency, billing flows and the retention funnel. I studied Mechanical Engineering with a minor in Finance at BITS Pilani, did applied-AI research on image restoration, and trained as a PM through NextLeap's fellowship. That mix shapes how I work: break the problem down, check it against data, ship, then measure. I'm open to roles in AI product, analytics, strategy and forward-deployed engineering.`
 
 /* ------------------------------------------------------------------ */
 /* Projects                                                            */
 /* ------------------------------------------------------------------ */
+
+const PLAY = {
+  coach: 'https://play.google.com/store/apps/details?id=com.vlv.aravali.kukuaicoach&hl=en_IN',
+  dicta: 'https://play.google.com/store/apps/details?id=com.vlv.aravali.kukuflow&hl=en_IN',
+}
+export const playLinks = PLAY
 
 export const projects: Project[] = [
   {
@@ -61,40 +51,63 @@ export const projects: Project[] = [
     period: 'Aug 2026 – present',
     tier: 'flagship',
     tracks: ['ai', 'product', 'analytics'],
-    oneLiner: 'An AI spoken-English tutor for Hindi speakers, on web and Android. 52K+ learners in its first 2 months.',
+    oneLiner: `An AI spoken-English tutor for Hindi speakers, on web and Android. ${play.coach.downloads} downloads on Google Play.`,
     problem:
       'Kuku AI Coach is an AI spoken-English tutor for Hindi speakers: conversational lessons, AI voice practice calls and a learner journey on web and Android, with a free first lesson that places each learner at the right level.',
     role: 'Graduate Management Trainee, FDE & AI Operations. I work across the whole product: the lesson engine and prompts, voice calls, learner flows, billing, analytics and AI quality.',
     approach: [
-      'Built the conversational lesson engine and prompt workflows on the Anthropic Claude API.',
-      'Added AI voice-practice calls by integrating ElevenLabs and Azure Speech, across web and Android.',
-      'Lowered first-session friction with a free first lesson and automatic placement.',
-      'Integrated subscription and coin billing on Razorpay and Google Play Billing.',
-      'Instrumented the learner funnel with Firebase, GA4, AppsFlyer and Meta Pixel; supported A/B tests and push campaigns that bring learners back to daily practice.',
-      'Improved tutor quality and unit economics through LLM evaluation, safety guardrails, response-latency tuning and prompt caching.',
-      'Turned learner feedback into shipped features, including a home-screen widget, lesson-practice improvements and app branding updates.',
+      'Built the conversational lesson engine and prompt workflows on the Anthropic Claude API, where code decides what each turn of a lesson is for and the model writes the words.',
+      'Built onboarding placement: a short assessment, scored on the server, that starts each learner at Beginner, Intermediate or Advanced.',
+      'Shipped a free first lesson that places the learner, starts their daily streak and unlocks a short voice-practice trial.',
+      'Added AI voice-practice calls with ElevenLabs and Azure Speech, plus a post-call report on grammar and pronunciation that is generated in the background.',
+      'Built coach tools for everyday English (translate, write an email, ask about a photo or document) and the speak-to-English bubble that later became Dicta.',
+      'Integrated subscriptions with UPI autopay and Google Play Billing, a low-cost trial, coins for voice practice billed by the minute, and tax invoices. Access is only granted once the server confirms payment.',
+      'Built server-decided reminder pushes with quiet hours, daily caps and control groups to measure real lift, plus an ops dashboard with editable copy.',
+      'Instrumented the funnel with Firebase, GA4, AppsFlyer and Meta Pixel from one shared event spec across web and Android, and supported A/B tests.',
+      'Improved tutor quality and unit economics: LLM evaluation, model benchmarking, per-step latency measurement, prompt caching and safety guardrails.',
+      'Hardened trust: safety checks run before every AI reply, distress gets a fixed supportive response, and personal details are removed before anything is stored.',
+      'Redesigned the learner web app, and turned feedback into shipped features such as a home-screen widget and lesson-practice improvements.',
     ],
     tools: ['React', 'TypeScript', 'Django', 'PostgreSQL', 'Claude API', 'ElevenLabs', 'Azure Speech', 'Razorpay', 'Google Play Billing', 'Firebase', 'GA4', 'AppsFlyer', 'Meta Pixel'],
-    outcomes: [{ value: '52K+', label: 'learners in the first 2 months', kind: 'shipped' }],
-    evidenceNote: 'Product screenshots coming soon.',
+    outcomes: [
+      { value: play.coach.downloads, label: 'downloads on Google Play', kind: 'shipped' },
+      { value: `${play.coach.rating}★`, label: 'Google Play rating', kind: 'shipped' },
+    ],
+    links: [{ label: 'Get it on Google Play', href: PLAY.coach }],
+    evidenceKey: 'kuku-ai-coach',
+    evidenceNote: 'Screens from the public Google Play listing.',
     source: 'LinkedIn profile (Kuku role) and current resumes.',
   },
   {
     slug: 'dicta',
     title: 'Dicta',
     context: 'Kuku · FDE & AI Operations',
-    period: 'In progress',
+    period: 'Nov 2026 – present',
     tier: 'flagship',
     tracks: ['ai', 'product'],
-    oneLiner: 'An AI voice-to-text app that turns mixed-language speech into clear English.',
+    oneLiner: 'Speak in Hindi or Hinglish over any app, get clear English back in the tone you want.',
     problem:
-      'People often speak in more than one language at once. Dicta takes that mixed-language speech and turns it into clear written English.',
-    role: 'Building the product end to end at Kuku, alongside Kuku AI Coach and on the same AI stack.',
-    approach: [],
-    tools: ['React', 'TypeScript', 'Django', 'PostgreSQL', 'Claude API', 'ElevenLabs', 'Azure Speech'],
-    outcomes: [],
-    evidenceNote: 'Details and screenshots coming soon.',
-    source: 'LinkedIn profile (Kuku role).',
+      'Plenty of people think in Hindi or Hinglish but have to write in English: a message, an email, a reply at work. Dicta is an Android app with a floating bubble: tap it over any app, speak, and get polished English to copy and paste.',
+    role: 'Dicta runs on the same backend I build for Kuku AI Coach. Its core (voice-to-English in five tones, safety checks, sign-in, subscriptions and analytics) first shipped as part of Coach. On the Dicta app itself I worked on the Premium paywall, the home and profile screens, tone quality, and safety and analytics audits.',
+    approach: [
+      'A floating bubble that works over any app: speak, then copy the English.',
+      'Pick the tone: casual, semi-formal, formal, Hinglish or Hindi.',
+      'Translate and email tools, history and a personal dictionary inside the app.',
+      'Privacy-first by design: it never reads other apps, never pastes for you, and does not keep audio once it is processed.',
+      'Shared engine: speech to text, then an AI rewrite in the chosen tone, with safety checks on every request.',
+      'Phone OTP or Google sign-in, daily free uses and a Premium plan with UPI autopay.',
+      'Fixed tone quality so the casual tone no longer adds things the user never said.',
+      'Audited the app\'s safety handling and analytics events before scaling up.',
+    ],
+    tools: ['Android', 'Kotlin', 'Jetpack Compose', 'Django', 'PostgreSQL', 'Speech-to-text', 'Claude API'],
+    outcomes: [
+      { value: play.dicta.downloads, label: 'downloads on Google Play', kind: 'shipped' },
+      { value: `${play.dicta.rating}★`, label: 'Google Play rating', kind: 'shipped' },
+    ],
+    links: [{ label: 'Get it on Google Play', href: PLAY.dicta }],
+    evidenceKey: 'dicta',
+    evidenceNote: 'Screens from the public Google Play listing.',
+    source: 'Dicta product behaviour and Aryan’s own contributions.',
   },
   {
     slug: 'hinge',
@@ -157,7 +170,7 @@ export const projects: Project[] = [
     title: 'Replit: activation strategy',
     context: 'Product case study · NextLeap PM Fellowship',
     period: 'Jul – Sep 2025',
-    tier: 'case',
+    tier: 'more',
     tracks: ['product', 'analytics'],
     oneLiner: 'Diagnosed why Replit users build 80% of an app and never deploy, and refocused activation on indie hackers and SMBs.',
     problem:
@@ -213,7 +226,7 @@ export const projects: Project[] = [
     title: 'Gnani.ai: voice AI for return-pickup validation',
     context: "Gnani.ai Founder's Office assignment",
     period: 'Feb – Mar 2026',
-    tier: 'case',
+    tier: 'more',
     tracks: ['ai', 'consulting'],
     oneLiner: 'A voice-AI flow that verifies "customer unavailable" return pickups in real time, before the delivery partner leaves.',
     problem:
@@ -292,7 +305,7 @@ export const projects: Project[] = [
     title: 'Campus Calories',
     context: 'Product build · BITS Hyderabad',
     period: 'Nov 2025 – Jan 2026',
-    tier: 'case',
+    tier: 'more',
     tracks: ['product'],
     oneLiner: 'A calorie and protein tracker built around what students can actually buy on campus.',
     problem:
@@ -313,7 +326,7 @@ export const projects: Project[] = [
     slug: 'ai-support-bot',
     title: 'AI support bot on n8n',
     context: 'Personal build · LLM applications',
-    tier: 'case',
+    tier: 'more',
     tracks: ['ai'],
     oneLiner: 'A Telegram assistant that opens tickets, remembers each user and answers with an LLM, built entirely as an n8n workflow.',
     problem:
@@ -336,7 +349,7 @@ export const projects: Project[] = [
     title: 'Image restoration with diffusion and GANs',
     context: 'Practice School II · BITS Pilani WILP, Hyderabad',
     period: 'Jul – Dec 2025',
-    tier: 'case',
+    tier: 'more',
     tracks: ['ai', 'analytics'],
     oneLiner: 'Built and benchmarked defocus-deblur, super-resolution and guided-diffusion pipelines for camera-based vehicle data.',
     problem:
@@ -380,20 +393,24 @@ export const projects: Project[] = [
   {
     slug: 'rigi-tv',
     title: 'Rigi TV: India microdrama growth strategy',
-    context: 'Growth strategy one-pager',
+    context: 'Growth marketing case study',
+    period: '2026',
     tier: 'more',
     tracks: ['consulting', 'product'],
     oneLiner: 'A paid-acquisition plan and FY2026 budget split to win India\'s ad-supported microdrama category.',
     problem: 'Short-drama downloads grew 320M year-on-year in 2024, and 60–70% of installs come from paid ads. Rigi TV needed a channel plan to take category leadership.',
-    role: 'Strategy and channel prioritisation.',
+    role: 'Stepped into the Growth Marketing Office role and wrote a one-page strategy brief for the marketing leadership team.',
     approach: [
+      'Analysed the global microdrama industry and what its growth means for India.',
+      'Studied how leading short-drama platforms acquire users, and the audience overlap with mobile gamers.',
       'Ranked six channels by role, from Meta Ads (critical) to programmatic display (defer).',
       'Recommended a budget split: 45% Meta, 27% Google, 15% creators, 8% referral, 3% ASO, 2% creative testing.',
     ],
     tools: ['Growth marketing', 'Channel strategy', 'Budget allocation'],
     outcomes: [],
-    evidenceNote: 'Document marked confidential, so it is not published here.',
-    source: 'Rigi TV growth-strategy one-pager.',
+    links: [{ label: 'Read the LinkedIn post', href: 'https://lnkd.in/p/gdtw7HMZ' }],
+    evidenceNote: 'The brief itself is confidential; the LinkedIn post summarises the work.',
+    source: 'Rigi TV growth-strategy one-pager and LinkedIn post.',
   },
   {
     slug: 'torrent-valuation',
@@ -444,19 +461,27 @@ export const projects: Project[] = [
   },
   {
     slug: 'solar-distillation',
-    title: 'Solar distillation performance',
-    context: 'Laboratory Project (ME F366) · with Khushi Singh',
-    period: 'Spring 2025',
+    title: 'Efficient solar distillation (DSIR project)',
+    context: 'DSIR PRISM project · Prof. S. S. Deshmukh · BITS Hyderabad',
+    period: '2024 – 2025',
     tier: 'more',
     tracks: ['analytics'],
-    oneLiner: 'Measured how stepped and dimpled solar stills perform, under Prof. S. S. Deshmukh.',
-    problem: 'Measure and improve the clean-water output of solar distillation systems.',
-    role: 'Co-author with Khushi Singh.',
-    approach: ['Instrumented stepped and dimpled-stepped stills with temperature sensors and analysed the logged data.'],
-    tools: ['Experimental design', 'Sensor data', 'Excel'],
-    outcomes: [],
+    oneLiner: 'Simulated and tested three solar-still designs to find the one that produces the most clean water.',
+    problem: 'Solar stills turn saline water into drinking water using only sunlight, but output is low. The DSIR-sponsored project set out to design and prove a more efficient apparatus.',
+    role: 'Worked on the project through a laboratory project (ME F366, with Khushi Singh) and the G. N. Ramachandran research fellowship, under Prof. Sandip Deshmukh.',
+    approach: [
+      'Modelled heat and mass transfer in ANSYS Fluent to see how design choices change output.',
+      'Compared three designs: unstepped, stepped, and stepped with dimples.',
+      'Instrumented the fabricated stills with thermocouples, solarimeters and pH meters, and analysed the logged data.',
+    ],
+    tools: ['ANSYS Fluent', 'CFD', 'Experimental design', 'Sensor data', 'Excel'],
+    outcomes: [
+      { label: 'The stepped still with dimples outperformed the other designs by adding heat-absorbing surface area', kind: 'finding' },
+      { label: 'A lower starting water depth increased output, since less latent heat is needed', kind: 'finding' },
+    ],
     evidenceKey: 'solar',
-    source: 'ME F366 mid-semester report.',
+    evidenceNote: 'Project progress report submitted under the DSIR PRISM scheme (Nov 2024).',
+    source: 'DSIR PRISM progress report and ME F366 report.',
   },
 ]
 
@@ -480,12 +505,14 @@ export const experience: Role[] = [
     place: 'Bengaluru · on-site',
     tracks: ['ai', 'product', 'analytics', 'consulting'],
     bullets: [
-      'Built and shipped Kuku AI Coach end to end, from the Claude-powered lesson engine to the web and Android learner flows. It scaled to 52K+ learners in 2 months.',
-      'Added AI voice-practice calls by integrating ElevenLabs and Azure Speech.',
-      'Drove activation and monetization with a free first lesson and automatic placement, plus subscription and coin billing on Razorpay and Google Play.',
-      'Instrumented the funnel across Firebase, GA4, AppsFlyer and Meta Pixel, and supported A/B tests and push campaigns that bring learners back.',
-      'Improved tutor quality and unit economics through LLM evaluation, safety guardrails, latency tuning and prompt caching.',
-      'Building Dicta, an AI voice-to-text app that turns mixed-language speech into clear English.',
+      `Built and shipped **Kuku AI Coach** end to end, from the **Claude-powered lesson engine** to the **web and Android** learner flows. It has ${play.coach.downloads} downloads on Google Play.`,
+      'Added **AI voice-practice calls** by integrating **ElevenLabs** and **Azure Speech**.',
+      'Drove **activation and monetization** with a **free first lesson** and **automatic placement**, plus **subscription and coin billing** on Razorpay and Google Play.',
+      'Instrumented the funnel across **Firebase, GA4, AppsFlyer and Meta Pixel**, and supported **A/B tests** and **push campaigns** that bring learners back.',
+      'Improved **tutor quality** and **unit economics** through **LLM evaluation**, **safety guardrails**, latency tuning and **prompt caching**.',
+      'Built **onboarding placement**, a free first lesson, **coach tools** and **server-decided reminder pushes** with **control groups**.',
+      '**Dicta**, an AI voice-to-text app, runs on the **backend I build for Coach**; I also shipped its **paywall**, screen fixes and **tone-quality** work.',
+      'Shipped 250+ commits across **web, backend, prompts and analytics** in my first three months.',
     ],
   },
   {
@@ -495,8 +522,8 @@ export const experience: Role[] = [
     place: 'Hyderabad',
     tracks: ['ai', 'analytics'],
     bullets: [
-      'Built defocus-deblur, super-resolution and guided-diffusion pipelines in PyTorch for vehicle camera data.',
-      'Benchmarked 3+ models (ESRGAN, Real-ESRGAN, A-ESRGAN) on PSNR, SSIM and FID; DDIM sampling cut sampling time 4× with negligible quality loss.',
+      'Built **defocus-deblur, super-resolution and guided-diffusion** pipelines in **PyTorch** for vehicle camera data.',
+      'Benchmarked 3+ models (**ESRGAN, Real-ESRGAN, A-ESRGAN**) on **PSNR, SSIM and FID**; **DDIM sampling** cut sampling time 4× with negligible quality loss.',
     ],
   },
   {
@@ -506,8 +533,8 @@ export const experience: Role[] = [
     place: 'Remote',
     tracks: ['consulting', 'analytics'],
     bullets: [
-      'Generated 150+ leads through multi-channel outreach and managed the CRM database.',
-      'Reached a 12–15% lead-to-conversation rate with targeted email and phone campaigns.',
+      'Generated 150+ **leads** through **multi-channel outreach** and managed the **CRM** database.',
+      'Reached a 12–15% **lead-to-conversation rate** with targeted email and phone campaigns.',
     ],
   },
   {
@@ -517,8 +544,8 @@ export const experience: Role[] = [
     place: 'Remote',
     tracks: ['product'],
     bullets: [
-      'Completed the 13-week fellowship: understanding the space, user research, prioritisation, metrics & growth, and technology & AI foundations.',
-      'Case studies on Hinge and Replit, plus a graduation project on LinkedIn creator growth.',
+      'Completed the 13-week **fellowship**: understanding the space, **user research**, **prioritisation**, **metrics & growth**, and **technology & AI foundations**.',
+      'Case studies on **Hinge** and **Replit**, plus a graduation project on **LinkedIn creator growth**.',
     ],
   },
   {
@@ -528,9 +555,9 @@ export const experience: Role[] = [
     place: 'Hyderabad',
     tracks: ['analytics', 'consulting'],
     bullets: [
-      'Led a 16-member BITS intern team: task delegation, mentorship and performance tracking.',
-      'Built a real-time KPI dashboard to find bottlenecks and reallocated tasks, boosting efficiency by 20%.',
-      'Applied root-cause analysis to robotics data and synthesised reports for project alignment.',
+      'Led a 16-member **BITS intern team**: task delegation, **mentorship** and **performance tracking**.',
+      'Built a **real-time KPI dashboard** to find bottlenecks and reallocated tasks, boosting **efficiency** by 20%.',
+      'Applied **root-cause analysis** to robotics data and synthesised reports for project alignment.',
     ],
   },
   {
@@ -539,7 +566,7 @@ export const experience: Role[] = [
     period: 'May – Sep 2025',
     place: 'BITS Pilani, Goa',
     tracks: ['analytics'],
-    bullets: ['Selected for a funded four-month research fellowship under Prof. Sandip Deshmukh, Department of Mechanical Engineering.'],
+    bullets: ['Selected for a **funded four-month research fellowship** under **Prof. Sandip Deshmukh**, Department of Mechanical Engineering.'],
   },
   {
     org: 'Indira Gandhi Centre for Atomic Research',
@@ -547,7 +574,7 @@ export const experience: Role[] = [
     period: 'May – Jul 2024',
     place: 'Kalpakkam',
     tracks: ['analytics'],
-    bullets: ['Modelled cavitation and column separation during water hammer with the Method of Characteristics.'],
+    bullets: ['Modelled **cavitation and column separation** during **water hammer** with the **Method of Characteristics**.'],
   },
 ]
 
@@ -574,27 +601,27 @@ export const skills: SkillGroup[] = [
   {
     name: 'Product',
     tracks: ['product', 'consulting'],
-    items: ['Product strategy', 'Roadmapping', 'Prioritisation (RICE)', 'User research', 'PRDs', 'Success metrics', 'A/B testing', 'Go-to-market', 'Figma', 'Whimsical'],
-  },
-  {
-    name: 'Data',
-    tracks: ['analytics', 'product'],
-    items: ['SQL', 'Python (Pandas, NumPy)', 'Funnel & cohort analysis', 'GA4', 'Firebase', 'AppsFlyer', 'Meta Pixel', 'Power BI', 'Tableau', 'Excel (advanced)', 'KPI dashboards', 'Root-cause analysis'],
+    items: ['Product strategy', 'Product discovery', 'Problem framing', 'User research & interviews', 'Survey design', 'Personas & journeys', 'PRDs', 'Roadmapping', 'Prioritisation (RICE)', 'North Star & guardrail metrics', 'A/B test design', 'Phased rollouts', 'Competitive analysis', 'Go-to-market', 'Wireframing (Figma, Whimsical)', 'Agile delivery'],
   },
   {
     name: 'AI',
     tracks: ['ai'],
-    items: ['Claude API', 'Prompt engineering', 'LLM evaluation', 'Safety guardrails', 'Prompt caching', 'Latency optimisation', 'Agentic workflows (n8n)', 'Embeddings & vector search', 'Voice AI (ElevenLabs, Azure Speech)', 'PyTorch'],
+    items: ['Claude API', 'Prompt engineering', 'LLM evaluation', 'Safety guardrails', 'PII redaction', 'Prompt caching', 'Latency & cost optimisation', 'Conversational design', 'Voice AI: speech-to-text & TTS', 'Pronunciation assessment', 'Agentic workflows (n8n)', 'Embeddings & vector search', 'Diffusion models & GANs', 'PyTorch'],
+  },
+  {
+    name: 'Data & Analytics',
+    tracks: ['analytics', 'product'],
+    items: ['SQL (MySQL)', 'Python (Pandas, NumPy)', 'Funnel & cohort analysis', 'Hypothesis testing', 'Root-cause analysis', 'KPI dashboards', 'Power BI', 'Tableau', 'Excel (advanced)', 'Plotly / Matplotlib', 'GA4', 'Firebase Analytics', 'AppsFlyer', 'Meta Pixel', 'Data storytelling'],
   },
   {
     name: 'Engineering',
     tracks: ['ai'],
-    items: ['React', 'TypeScript', 'Django', 'PostgreSQL', 'REST APIs', 'Supabase', 'Flask / Dash', 'Git'],
+    items: ['React', 'TypeScript', 'Vite & Tailwind', 'Django', 'PostgreSQL', 'REST APIs', 'Webhooks', 'Android (Kotlin, Jetpack Compose)', 'Supabase', 'Flask / Dash', 'Git', 'C', 'MATLAB', 'ANSYS Fluent'],
   },
   {
-    name: 'Business',
+    name: 'Business & Strategy',
     tracks: ['consulting', 'product', 'analytics'],
-    items: ['Subscription & coin monetisation', 'Razorpay & Google Play Billing', 'Retention & push campaigns', 'Market sizing (TAM/SAM/SOM)', 'Pricing models (CAPEX vs OPEX)', 'DCF & FCFF valuation', 'Lead generation & CRM'],
+    items: ['Subscription & coin monetisation', 'Payment integrations (Razorpay, Play Billing)', 'Retention & push campaigns', 'Performance marketing & channel mix', 'Budget allocation', 'Market sizing (TAM/SAM/SOM)', 'Pricing models (CAPEX vs OPEX)', 'Unit economics', 'DCF & FCFF valuation', 'Financial & risk analysis', 'B2B lead generation & CRM'],
   },
 ]
 
@@ -604,15 +631,25 @@ export const skills: SkillGroup[] = [
 
 export const education = [
   {
-    school: 'Birla Institute of Technology and Science (BITS), Pilani · Hyderabad Campus',
+    school: 'Birla Institute of Technology and Science (BITS), Pilani',
     degree: 'B.E. Mechanical Engineering, Minor in Finance',
-    period: '2022 – 2026',
+    period: '2022 – 2026 (Graduated)',
   },
   {
     school: 'NextLeap',
     degree: 'Product Management Fellowship, Cohort 39',
     period: 'Jul – Nov 2025',
     fileKey: 'nextleap-pm-fellowship',
+  },
+  {
+    school: 'Maharishi Arvind Public School',
+    degree: 'Senior Secondary (CBSE)',
+    period: '2021',
+  },
+  {
+    school: 'Maharishi Arvind Public School',
+    degree: 'Secondary (CBSE)',
+    period: '2019',
   },
 ]
 
@@ -650,6 +687,17 @@ export const certs: Cert[] = [
   { title: 'Explore Engineering Job Simulation', issuer: 'GE Aerospace · Forage', date: 'Jul 2026', group: 'Engineering', fileKey: 'forage-ge-aerospace' },
   { title: 'Engineering Job Simulation', issuer: 'British Airways · Forage', date: 'Jul 2026', group: 'Engineering', fileKey: 'forage-british-airways' },
   { title: 'MATLAB Onramp', issuer: 'MathWorks', date: 'Jun 2024', group: 'Engineering', fileKey: 'mathworks-matlab' },
+
+  { title: 'Bloomberg Market Concepts', issuer: 'Bloomberg for Education', date: 'Nov 2023', group: 'Consulting & Finance', verify: 'https://portal.bloombergforeducation.com/certificates/vbdiEr3CFUqMJTnGJ1AJbDaQ', fileKey: 'bloomberg-bmc' },
+  { title: 'Bloomberg Spreadsheet Analysis', issuer: 'Bloomberg for Education', date: '', group: 'Consulting & Finance' },
+  { title: 'Environmental Social Governance (ESG)', issuer: 'Bloomberg for Education', date: '', group: 'Consulting & Finance' },
+
+  { title: 'Collaborating with G Suite Apps', issuer: 'Coursera Project Network', date: 'Jul 2025', group: 'Other', verify: cv('I2YT7SAA4P5U'), fileKey: 'coursera-gsuite' },
+  { title: 'Create a No-Code One-Page SMB Website with Carrd', issuer: 'Coursera Project Network', date: 'Jul 2025', group: 'Other', verify: cv('TJXFFPNUQWFK'), fileKey: 'coursera-carrd' },
+  { title: 'Create a Profile and Network on LinkedIn', issuer: 'Coursera Project Network', date: 'Jul 2025', group: 'Other', verify: cv('2V9L5R1T0VTO'), fileKey: 'coursera-linkedin-profile' },
+  { title: 'The Science of Well-Being for Teens', issuer: 'Yale University · Coursera', date: 'Jun 2026', group: 'Other', verify: cv('6M3TVFBY68H2'), fileKey: 'coursera-yale-wellbeing' },
+  { title: 'Suicide Prevention', issuer: 'Wesleyan University · Coursera', date: 'Jun 2026', group: 'Other', verify: cv('30JMVJUMM9VE'), fileKey: 'coursera-wesleyan-suicide-prevention' },
+  { title: 'Digital Wellness', issuer: 'Udemy', date: 'Mar 2025', group: 'Other', fileKey: 'udemy-digital-wellness' },
 ]
 
 export const certGroupTracks: Record<Cert['group'], Track[]> = {
@@ -658,4 +706,121 @@ export const certGroupTracks: Record<Cert['group'], Track[]> = {
   'Data & Analytics': ['analytics'],
   'Consulting & Finance': ['consulting'],
   Engineering: ['ai'],
+  Other: [],
 }
+
+/* ------------------------------------------------------------------ */
+/* v2 layout content (sources: LinkedIn Kuku role + resumes)           */
+/* ------------------------------------------------------------------ */
+
+/** Exactly 6 words: the CSS rotator timing assumes 6. */
+export const heroWords = ['AI tutors', 'voice AI', 'LLM evals', 'growth loops', 'billing flows', 'product bets']
+export const heroChips = ["BITS Pilani '26", 'FDE & AI Ops', 'LLM products', 'Growth & analytics']
+export const ringText = 'PRODUCT • DATA • AI • FDE • GROWTH • STRATEGY • '
+export const marqueeTopics = ['AI tutor', 'Voice AI', 'LLM evals', 'Guardrails', 'Billing', 'Growth', 'Analytics', 'Product', 'Strategy']
+export const marqueeStack = ['React', 'TypeScript', 'Django', 'PostgreSQL', 'Claude API', 'ElevenLabs', 'Azure Speech', 'Firebase', 'GA4', 'AppsFlyer', 'Razorpay', 'Play Billing']
+
+/** Kept deliberately general: user-facing behaviour and Aryan's own part only. No internals. */
+export const playUpdated = play.updated
+export const nowStats: { value: string; label: string; live?: boolean }[] = [
+  { value: play.coach.downloads, label: 'Coach downloads on Play', live: true },
+  { value: `${play.coach.rating}★`, label: 'Coach rating on Play', live: true },
+  { value: play.dicta.downloads, label: 'Dicta downloads on Play', live: true },
+  { value: `${play.dicta.rating}★`, label: 'Dicta rating on Play', live: true },
+  { value: '250+', label: 'commits in my first 3 months' },
+]
+
+export const dictaTones = ['Casual', 'Semi-formal', 'Formal', 'Hinglish', 'Hindi']
+
+export type Built = { icon: string; app: 'Coach' | 'Dicta'; tag: string; title: string; sub: string; points: [string, string?][]; tools: string[] }
+export const built: Built[] = [
+  {
+    icon: 'brain',
+    app: 'Coach',
+    tag: 'Lessons',
+    title: 'AI tutor lessons',
+    sub: 'Conversation-first English practice',
+    points: [['Lessons as a conversation', 'Code picks the goal of each turn, the AI writes the words'], ['Placement first', 'Scored on the server: Beginner, Intermediate or Advanced'], ['Free first lesson', 'Starts the streak and unlocks a voice trial']],
+    tools: ['Claude API', 'Prompt design'],
+  },
+  {
+    icon: 'mic',
+    app: 'Coach',
+    tag: 'Voice',
+    title: 'Voice practice calls',
+    sub: 'Speak out loud, get feedback after',
+    points: [['Timed practice calls with the tutor'], ['Feedback on grammar and pronunciation', 'Arrives as a report after the call'], ['Web and Android']],
+    tools: ['ElevenLabs', 'Azure Speech'],
+  },
+  {
+    icon: 'card',
+    app: 'Coach',
+    tag: 'Money paths',
+    title: 'Subscriptions & coins',
+    sub: 'A monthly plan, plus coins for practice',
+    points: [['Subscriptions with UPI autopay and Play Billing'], ['Coins for voice practice', 'Billed by the minute, unused time refunded'], ['Access follows the payment', 'Confirmed on the server'], ['Tax invoices']],
+    tools: ['Razorpay', 'Google Play Billing'],
+  },
+  {
+    icon: 'chart',
+    app: 'Coach',
+    tag: 'Growth',
+    title: 'Growth loop',
+    sub: 'Measure the funnel, bring learners back',
+    points: [['Funnel analytics on every surface', 'One shared event spec for web, Android and Dicta'], ['A/B tests'], ['Reminder pushes', 'Quiet hours, daily caps, control groups'], ['Ops dashboard', 'Campaign results and editable copy']],
+    tools: ['Firebase', 'GA4', 'AppsFlyer', 'Meta Pixel'],
+  },
+  {
+    icon: 'shield',
+    app: 'Coach',
+    tag: 'Quality · Trust',
+    title: 'AI quality & safety',
+    sub: 'A tutor that is safe, fast and affordable',
+    points: [['Safety checks before every reply'], ['Personal details removed', 'Before anything is stored'], ['LLM evals and model benchmarks'], ['Latency measured step by step'], ['Prompt caching', 'Lower cost per lesson']],
+    tools: ['LLM evals', 'Guardrails'],
+  },
+  {
+    icon: 'spark',
+    app: 'Coach',
+    tag: 'Ship · Iterate',
+    title: 'Shipped from feedback',
+    sub: 'Learner feedback turned into features',
+    points: [['Web app redesign'], ['Coach tools', 'Translate, email, photo or document help'], ['Speak-to-English bubble', 'Later became Dicta'], ['Home-screen widget and lesson-practice fixes']],
+    tools: ['React', 'TypeScript', 'Android'],
+  },
+  {
+    icon: 'wave',
+    app: 'Dicta',
+    tag: 'Voice to English',
+    title: 'Dicta bubble',
+    sub: 'Hindi or Hinglish in, clear English out',
+    points: [['A floating bubble over any app'], ['Five tones to choose from'], ['Copy and paste', 'The user stays in control']],
+    tools: ['Android', 'Speech-to-text', 'LLMs'],
+  },
+  {
+    icon: 'shield',
+    app: 'Dicta',
+    tag: 'Shared backend',
+    title: 'The engine behind Dicta',
+    sub: 'Built for Coach first, now powering Dicta',
+    points: [['Speech to text, then a rewrite in your tone'], ['Safety checks on every request'], ['Sign-in, daily limits and Premium', 'With UPI autopay'], ['Its own analytics stream']],
+    tools: ['Django', 'PostgreSQL', 'Claude API'],
+  },
+  {
+    icon: 'card',
+    app: 'Dicta',
+    tag: 'My part',
+    title: 'Paywall & tone quality',
+    sub: 'What I shipped on Dicta',
+    points: [['Premium paywall layout'], ['Home and profile screen fixes'], ['Tone quality', 'Casual tone no longer adds things you never said'], ['Safety and analytics audits']],
+    tools: ['Jetpack Compose', 'Prompt design'],
+  },
+]
+
+/** "How I work" steps: their own banner section after Education & certificates. */
+export const howIWork = [
+  { icon: 'brain', title: 'Discover', text: 'Talk to users and the team, read the funnel, and find where time and drop-offs really go, and where AI actually earns its keep.' },
+  { icon: 'spark', title: 'Build', text: 'Ship a working slice fast: real prompts, real data and real users on web and Android, not a demo.' },
+  { icon: 'shield', title: 'Deploy', text: 'Roll it out safely: checks on the server, guardrails before every AI reply, access only after payment is confirmed.' },
+  { icon: 'chart', title: 'Measure', text: 'Instrument every step, run A/B tests and control groups, and iterate on what the numbers say.' },
+]
