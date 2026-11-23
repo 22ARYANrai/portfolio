@@ -926,3 +926,17 @@ details:not([open]) > .cert-toggle .cert-cta { animation: certNudge 2.4s ease-in
 .theme-icon { animation: themeSpin 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.3); }
 @keyframes themeSpin { from { opacity: 0; transform: rotate(-120deg) scale(0.5); } }
 @media (prefers-reduced-motion: reduce) { .theme-icon { animation: none; } }
+
+/* Boxed secondary button (hero Resume): same frame and hard shadow as the yellow CTA, white fill */
+.btn-boxed {
+  border: 3px solid var(--ink) !important;
+  border-radius: 0 !important;
+  background: var(--card) !important;
+  color: var(--ink) !important;
+  box-shadow: 6px 6px 0 0 var(--sh, var(--ink));
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+@media (hover: hover) {
+  .btn-boxed:hover { transform: translate(2px, 2px); box-shadow: 4px 4px 0 0 var(--sh, var(--ink)); }
+}
+.btn-boxed:active { transform: translate(6px, 6px); box-shadow: none; }

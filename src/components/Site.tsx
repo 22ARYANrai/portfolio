@@ -38,6 +38,7 @@ function Pill({
   download,
   onClick,
   external,
+  className = '',
 }: {
   href: string
   children: ReactNode
@@ -45,6 +46,7 @@ function Pill({
   download?: string
   onClick?: (e: React.MouseEvent) => void
   external?: boolean
+  className?: string
 }) {
   return (
     <a
@@ -52,7 +54,7 @@ function Pill({
       download={download}
       onClick={onClick}
       {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-      className={`inline-flex min-h-12 items-center gap-2 rounded-full px-6 text-[0.95rem] font-bold transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
+      className={`${className} inline-flex min-h-12 items-center gap-2 rounded-full px-6 text-[0.95rem] font-bold transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
         solid ? 'btn-solid bg-acc text-on-accent shadow-[0_10px_30px_-10px_var(--acc)]' : 'btn-ghost border border-line bg-paper-2/60 text-ink hover:border-acc'
       }`}
     >
@@ -288,7 +290,7 @@ export function Hero() {
               See what I&rsquo;m building <Icon name="arrow" />
             </Pill>
             {resume && (
-              <Pill href={RESUME_URL} download="Aryan-Rai-Resume.pdf">
+              <Pill href={RESUME_URL} download="Aryan-Rai-Resume.pdf" className="btn-boxed">
                 Resume
               </Pill>
             )}
@@ -297,7 +299,7 @@ export function Hero() {
               <Icon name="linkedin" className="size-6" />
             </a>
             {profile.github && (
-              <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)" className="grid size-12 place-items-center rounded-full hover:bg-paper-2">
+              <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)" className="social-btn grid size-12 place-items-center">
                 <Icon name="github" className="size-6" />
               </a>
             )}
